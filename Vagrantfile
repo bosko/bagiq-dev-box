@@ -6,7 +6,6 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Use Ubuntu 14.04 Trusty Tahr 64-bit as our operating system
   config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = 'bagiq-dev-box'
 
   # Configurate the virtual machine to use 2GB of RAM
   config.vm.provider :virtualbox do |vb|
@@ -23,6 +22,39 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder ENV['SHARED_FOLDER'], '/home/vagrant/code', nfs: ENV['USE_NFS']
   end
 
-  config.vm.provision :shell, path: 'bootstrap.sh', keep_color: true
-  config.vm.provision :shell, path: 'bootstrap-ruby.sh', keep_color: true, privileged: false
+  # Use Chef Solo to provision our virtual machine
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level = :debug
+    chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
+
+    chef.add_recipe "apt"
+    chef.add_recipe "nodejs"
+    chef.add_recipe "bagiq"
+    chef.add_recipe "ruby_build"
+    chef.add_recipe "rbenv::user"
+    chef.add_recipe "rbenv::vagrant"
+    chef.add_recipe "freetds"
+
+    # Install Ruby 2.1.2 and Bundler
+    chef.json = {
+      rbenv: {
+        user_installs: [{
+          user: 'vagrant',
+          rubies: ["2.1.2"],
+          global: "2.1.2",
+          gems: {
+            "2.1.2" => [
+              { name: "compass" },
+              { name: "bundler" }
+            ]
+          }
+        }]
+      },
+      mysql: {
+        version: "5.6",
+        server_root_password: "bagiq",
+        remove_anonymous_users: true
+      }
+    }
+  end
 end
