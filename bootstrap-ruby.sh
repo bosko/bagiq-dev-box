@@ -9,6 +9,11 @@ sudo -H -u vagrant bash -c 'export PATH="/home/vagrant/.rbenv/bin:$PATH" && eval
 # Create .gemrc file
 echo 'gem: --no-ri --no-rdoc' >> /home/vagrant/.gemrc
 
+# Create .tmux.conf file
+echo 'unbind C-b
+set-option -g prefix `
+bind-key ` send-prefix' >> /home/vagrant/.tmux.conf
+
 # Install bundler and compass
 sudo -H -u vagrant bash -c 'export PATH="/home/vagrant/.rbenv/bin:$PATH" && eval "$(rbenv init -)" && gem install bundler compass > /dev/null 2>&1'
 
