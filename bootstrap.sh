@@ -10,7 +10,7 @@ echo updating package information
 # apt-add-repository -y ppa:brightbox/ruby-ng >/dev/null 2>&1
 apt-get -y update >/dev/null 2>&1
 
-install 'Various utils' wget curl autoconf openssl htop freetds
+install 'Various utils' wget curl autoconf openssl htop freetds tmux
 install 'Ruby dependencies 1' zlib1g-dev libssl-dev libreadline-dev libyaml-dev libcurl4-openssl-dev
 install 'Ruby dependencies 2' libffi-dev libreadline6 libpcre3  libpcre3-dev
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
