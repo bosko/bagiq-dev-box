@@ -17,4 +17,7 @@ bind-key ` send-prefix' >> /home/vagrant/.tmux.conf
 # Install bundler and compass
 sudo -H -u vagrant bash -c 'export PATH="/home/vagrant/.rbenv/bin:$PATH" && eval "$(rbenv init -)" && gem install bundler compass > /dev/null 2>&1'
 
+curl https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | bash
+source /home/vagrant/.nvm/nvm.sh && nvm install v0.10.33
+
 echo 'sve postavljeno, pici!'

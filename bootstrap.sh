@@ -7,7 +7,6 @@ function install {
 
 echo updating package information
 
-# apt-add-repository -y ppa:brightbox/ruby-ng >/dev/null 2>&1
 apt-get -y update >/dev/null 2>&1
 
 install 'Various utils' wget curl autoconf openssl htop freetds-common freetds-dev tmux
@@ -22,8 +21,6 @@ install Git git
 install SQLite sqlite3 libsqlite3-dev
 
 install 'development tools' build-essential
-
-install 'ExecJS runtime and npm package manager' nodejs-legacy npm
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
