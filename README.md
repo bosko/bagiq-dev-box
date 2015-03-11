@@ -1,3 +1,6 @@
+If vagrant is running on windows you should first follow the steps from link:
+https://github.com/mitchellh/vagrant/issues/4815#issuecomment-74040523
+
 # How to set up AngularJS project
 
 On first log in to VM default NodeJS version should be set.
