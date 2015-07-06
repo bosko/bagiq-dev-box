@@ -13,14 +13,13 @@ install 'Various utils' wget curl autoconf openssl htop freetds-common freetds-d
 install 'Ruby dependencies 1' zlib1g-dev libssl-dev libreadline-dev libyaml-dev libcurl4-openssl-dev
 install 'Ruby dependencies 2' libffi-dev libreadline6 libpcre3  libpcre3-dev
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
+install 'Compiler and development tools' build-essential
 
 install memcached memcached
 install Redis redis-server
 
 install Git git
 install SQLite sqlite3 libsqlite3-dev
-
-install 'development tools' build-essential
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
